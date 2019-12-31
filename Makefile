@@ -14,6 +14,7 @@ all: clean $(target)
 
 $(target): $(objects)
 	$(cc) $(objects) -o $(target) $(cdep)
+	rm -fr *.o *.gch
 
 $(objects): %.o: %.cpp $(headers)
 	$(cc) $(cflag) $(sources) $(headers) $(cdep)
@@ -25,4 +26,4 @@ install:
 	install $(target) $(path)
 
 uninstall:
-	re -rf /usr/local/bin/$(target)
+	rm -rf /usr/local/bin/$(target)

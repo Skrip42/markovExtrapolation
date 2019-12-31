@@ -7,8 +7,8 @@ int main(void)
     int i, j, siz, offset, step;
     std::cout << "enter entity count: ";
     std::cin >> siz;
-    Matrix transition(siz, siz);
-    Matrix initial(1, siz);
+    Matrix::Matrix transition(siz, siz);
+    Matrix::Matrix initial(1, siz);
     std::cout << "\nenter transition matrix:\n";
     transition.set(std::cin);
     std::cout << "\nenter initial state vector:\n";
@@ -18,8 +18,8 @@ int main(void)
     std::cout << "\nenter step count: ";
     std::cin >> step;
     std::cout << "\n\n";
-    Matrix extrapolate = pow(transition, offset);
-    Matrix state = initial * extrapolate;
+    Matrix::Matrix extrapolate = pow(transition, offset);
+    Matrix::Matrix state = initial * extrapolate;
     for (i = 0; i < step; i++) {
         std::cout << "step " << offset + i << ":\t";
         for (j = 0; j < siz; j++) {

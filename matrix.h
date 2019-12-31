@@ -4,6 +4,8 @@
 #include <iostream>
 #include <exception>
 
+namespace Matrix {
+
 class Matrix
 {
     public:
@@ -12,13 +14,13 @@ class Matrix
         Matrix(std::istream&);
         Matrix(const Matrix&);
         ~Matrix();
-        void set(float**);
-        void set(int, int, float);
-        void set(std::istream&);
-        float get(int, int);
-        int getSizeR();
-        int getSizeC();
-        void empty();
+        Matrix& set(float**);
+        Matrix& set(int, int, float);
+        Matrix& set(std::istream&);
+        float get(int, int) const;
+        int getSizeR() const;
+        int getSizeC() const;
+        Matrix& empty();
 
         static Matrix getSimple(int);
         float* operator[] (const int);
@@ -44,6 +46,10 @@ class Matrix
         void init();
 };
 
+inline float Matrix::get(int r, int c) const {return matrix[r][c];};
+inline int Matrix::getSizeR() const {return matrix_size_r;};
+inline int Matrix::getSizeC() const {return matrix_size_c;};
+
 class MatrixException : public std::exception {
     public:
         MatrixException() : _reason("unknown") {}
@@ -55,4 +61,5 @@ class MatrixException : public std::exception {
         std::string _reason;
 };
 
+}
 #endif
